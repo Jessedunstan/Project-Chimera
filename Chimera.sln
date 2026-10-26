@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{903728D5-C415-4663-8C57-4A5B73A71836}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Core", "src\Chimera.Core\Chimera.Core.csproj", "{F2D182FC-9367-4DD1-936B-9E007D67BE57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Tests", "src\Chimera.Tests\Chimera.Tests.csproj", "{4690E749-52BF-44E6-92F7-DF578B19DFED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chimera.Presentation.Godot", "src\Chimera.Presentation.Godot\Chimera.Presentation.Godot.csproj", "{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2D182FC-9367-4DD1-936B-9E007D67BE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D182FC-9367-4DD1-936B-9E007D67BE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D182FC-9367-4DD1-936B-9E007D67BE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D182FC-9367-4DD1-936B-9E007D67BE57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4690E749-52BF-44E6-92F7-DF578B19DFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4690E749-52BF-44E6-92F7-DF578B19DFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4690E749-52BF-44E6-92F7-DF578B19DFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4690E749-52BF-44E6-92F7-DF578B19DFED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F2D182FC-9367-4DD1-936B-9E007D67BE57} = {903728D5-C415-4663-8C57-4A5B73A71836}
+		{4690E749-52BF-44E6-92F7-DF578B19DFED} = {903728D5-C415-4663-8C57-4A5B73A71836}
+		{A0E3732C-CCF8-4CB2-BA91-BA712775CDF4} = {903728D5-C415-4663-8C57-4A5B73A71836}
+	EndGlobalSection
+EndGlobal
