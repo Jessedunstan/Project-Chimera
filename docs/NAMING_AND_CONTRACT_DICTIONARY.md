@@ -55,3 +55,31 @@ namespace Chimera.Core.Contracts
     }
 }
 ```
+
+---
+
+## 4. Macro-Simulation Standards (Dwarf Fortress Foundation)
+
+### 4.1 Raw Material Yield Tensors & Thermal Properties (`Chimera.Core.Macro.Materials`)
+All raw materials are parameterized by exact Dwarf Fortress mechanical tensors and SI thermal units:
+- **`RawMaterialProperties`**: Unmanaged struct containing `SolidDensity` ($kg/m^3$), `SpecificHeat` ($J/(kg \cdot K)$), `MeltingPointK` ($K$), `BoilingPointK` ($K$), and mechanical strength tensors in $kPa$: `ImpactYield`, `ImpactFracture`, `ImpactStrainAtYield`, `CompressiveYield`, `CompressiveFracture`, `TensileYield`, `TensileFracture`, `ShearYield`, `ShearFracture`, and `MaxEdge`.
+- **Young's Modulus Formula:**
+  $$E = \frac{\text{Yield}}{\text{StrainAtYield}} \times 10^8\text{ Pa}$$
+- **Urist to Kelvin Conversion:**
+  $$T_K = \frac{T_U - 10000}{1.8} + 273.15$$
+- **Projection to Sliders:** `RawMaterialProperties.ToPhysicalParameters()` seamlessly projects canonical DF material tensors into normalized continuous `PhysicalMaterialParameters` for the `slider-math-engine`.
+
+### 4.2 4-Tier Geological Stratigraphy (`Chimera.Core.Macro.Geology`)
+- **`StratigraphicLayerType`**:
+  1. `Soil`: Humus, loam, sand, clay, silt, peat ($0\text{ to }5\text{ meters}$).
+  2. `Sedimentary`: Primary source of coal (bituminous coal, lignite), flux stones (limestone, chalk, dolomite), and iron ores (hematite, limonite).
+  3. `Metamorphic`: High-pressure transformation band hosting marble, quartzite, slate, gneiss, schist, native gold/silver, and gems.
+  4. `IgneousExtrusive`: Volcanic surface caps (basalt, obsidian, andesite, dacite).
+  5. `IgneousIntrusive`: Deep basement rock (granite, diorite, gabbro with magnetite and native platinum).
+  6. `PlutonicCore`: Deep mantle/magma and raw adamantine spires.
+- **Seeded Resource Distribution (`GeologicalStratigraphyGenerator`)**: Fully deterministic, zero-allocation 3D coherent noise and cellular sampling enforcing Dwarf Fortress geological host-rock rules.
+
+### 4.3 Historical Chronicle Ledger (`Chimera.Core.Macro.History`)
+- **`FixedString64`**: Cache-friendly 64-byte unmanaged UTF-8 string buffer for event descriptions. Zero GC allocations.
+- **`HistoricalEvent`**: Sequential unmanaged struct (`EventId`, `WorldTick`, `EventType`, `PrimaryEntityId`, `SecondaryEntityId`, `LocationX`, `LocationY`, `LocationZ`, `Summary`, `MetadataFlags`).
+- **`HistoricalLedger`**: Backed by unmanaged native memory (`NativeMemory.AllocZeroed`) with atomic lock-free parallel append (`Interlocked.Increment`). Implements `IHistoricalEventPublisher` and `ISimulationTickable`. Supports zero-allocation span queries over historical epochs.
