@@ -14,7 +14,7 @@
   - **.NET 8.0 SDK (8.0.427)**
   - **Godot Engine 4.7.2 Mono (.NET build)**
   - **Blockbench 5.2.2 Portable**
-  - **Ollama Runner** (Background setup in progress)
+  - **Ollama Runner** (Installed & operational)
 - [x] **Decoupled Architecture Scaffolding (`Chimera.sln`):**
   - `src/Chimera.Core`: Pure C# (.NET 8) simulation backend (ZERO Godot dependencies).
   - `src/Chimera.Presentation.Godot`: Godot 4 C# frontend (renders voxel world & shaders).
