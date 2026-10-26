@@ -1,0 +1,47 @@
+# Project Chimera .gitignore (Godot 4 + .NET C#)
+
+# Prerequisites / Toolchains
+chimera_tools/
+
+# Godot-specific ignores
+.godot/
+*.translation
+
+# Mono / C# ignores
+.mono/
+[Bb]in/
+[Oo]bj/
+[Aa]rtifacts/
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.sln.docstates
+
+# OS Generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ollama local models and weights
+models/
+*.bin
+*.gguf
+
+# Blockbench temp files
+*.bbbackup
