@@ -13,10 +13,12 @@ All game mechanics operate on normalized or physical continuous scales rather th
 
 ---
 
-## 2. Decoupled Architecture (Unbreakable Invariant)
+## 2. Decoupled Architecture & Performance Invariants (Unbreakable Invariants)
 * **`Chimera.Core` (.NET 8):** Pure C# simulation backend. ZERO dependencies on Godot scene trees, nodes, or shaders. Runs deterministically and multi-threaded on worker threads.
-* **`Chimera.Presentation.Godot`:** Godot 4 C# layer. Renders active voxel chunks, greedy meshes, and shaders (bioluminescence, chromatic adaptation). Listens to `Chimera.Core` state via direct C# interface calls in local memory (zero network overhead).
-* **`Chimera.Tests`:** Unit and determinism test suite.
+* **`Chimera.Presentation.Godot`:** Godot 4 C# layer. Renders active voxel chunks, greedy meshes, and shaders (bioluminescence, chromatic adaptation). Reads state via lock-free immutable snapshots (`DoubleBufferedSnapshot<T>`), with zero thread contention and zero torn reads.
+* **Discrete Timestep Determinism:** All simulation layers step via fixed discrete ticks (`ulong microTickIndex` @ 60Hz, `ulong simulationTickIndex` @ 1Hz, `ulong macroTickIndex`). Variable floating-point delta times are strictly forbidden in `Chimera.Core`.
+* **Zero-Allocation Data-Oriented Design (DoD):** Inner simulation loops must operate over contiguous unmanaged struct buffers (`Span<T>`) without polymorphic virtual dispatch or steady-state heap allocations. Sliders are identified via strongly-typed `SliderId : ushort`.
+* **`Chimera.Tests`:** Determinism, unit, and concurrency test suite ensuring cross-machine bit-identical reproducibility.
 
 ---
 
