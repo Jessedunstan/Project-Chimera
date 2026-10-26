@@ -1,4 +1,5 @@
 # ⚡ PROJECT CHIMERA: Emergent Voxel Sandbox & Simulation Engine (v3.1)
+**Repository:** [https://github.com/Jessedunstan/Project-Chimera](https://github.com/Jessedunstan/Project-Chimera)
 
 Project Chimera combines **Dwarf Fortress** (macro-simulation & deep history), **RimWorld** (micro-psychology & social webs), and **Rain World** (autonomous off-screen ecosystems) with a 3D destructible voxel presentation layer powered by **Godot Engine 4 (.NET C#)**.
 
