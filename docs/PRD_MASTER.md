@@ -1,11 +1,19 @@
 # Project Chimera: Master Product Requirements Document (PRD v3.1)
 *Emergent Voxel Sandbox & Simulation Engine*
 
-## 1. Executive Summary & Philosophy
-Project Chimera combines three landmark simulation paradigms:
-1. **Dwarf Fortress (Macro):** Deep world history, geological layering, material physical constants, civilization ledgers, deterministic procedural generation.
-2. **RimWorld (Micro):** Individual psychology, mood curves, mental break thresholds, social webs, opinion modifiers, storyteller tension pacing.
-3. **Rain World (Ecosystem):** Autonomous off-screen food webs, persistent creature fear/aggression memory, territorial dynamics, environmental hazard cycles.
+## 1. Executive Summary, Aim & Long-Term Vision
+Project Chimera combines three landmark simulation paradigms into a fully destructible, ultra-high-performance **3D Voxel Sandbox Engine** (designed as an extensible, modern C# replica and evolution of the Minecraft engine):
+1. **Minecraft Java Core (3D Spatial Presentation & Voxel Engine):** Destructible voxel terrain, greedy chunk meshing, AABB hero physics, first/third-person hero controls, dynamic lighting/shaders, and procedural voxel world generation.
+2. **Dwarf Fortress (Macro):** Deep world history, geological stratigraphy, raw material physical yield tensors, civilization ledgers, deterministic procedural generation.
+3. **RimWorld (Micro):** Individual psychology, continuous mood curves, mental break thresholds, social webs, opinion modifiers, storyteller tension pacing.
+4. **Rain World (Ecosystem):** Autonomous off-screen food webs, persistent creature fear/aggression memory, territorial dynamics, environmental hazard cycles.
+
+### Staged Development Strategy: Simulation First, Presentation Second
+To prevent the monolithic coupling traps common in voxel games, Project Chimera strictly builds **Simulation First (`Chimera.Core`)** under pure Model-View separation:
+- The simulation logic (geology, food webs, psychology, thermodynamics) contains ZERO dependencies on voxel renderers, scene trees, or graphical nodes.
+- The 3D Voxel Engine (`Chimera.Presentation.Godot`) acts as the presentation view, consuming immutable simulation snapshots via lock-free atomic swaps.
+
+---
 
 ### The Universal Slider & Math Paradigm
 **"Everything is a continuous mathematical slider."**  

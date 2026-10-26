@@ -46,18 +46,25 @@ All foundational simulation layers are implemented in pure C# (`src/Chimera.Core
 
 ---
 
-## 3. Next Immediate Roadmap (Phase 4 Execution)
-1. **Godot C# Voxel Engine Scaffolding (`src/Chimera.Presentation.Godot/`):**
-   - Voxel chunk representation and greedy meshing algorithm.
-   - Multi-threaded render packet consumer subscribing to `DoubleBufferedSnapshot`.
-   - Voxel shaders: temperature color gradient, bioluminescence intensity uniform, and chromatic adaptation.
-2. **Camera & Hero Controls:**
-   - Overview DF commander orbit camera + 1st/3rd person hero mode.
+## 3. Next Immediate Roadmap: Phase 4 (3D Voxel Engine & Presentation)
+*Note for the incoming presentation chat: The long-term vision is a high-performance 3D voxel sandbox engine (replicating and modernizing the Minecraft Java engine: first/third-person hero controls, destructible voxel blocks, AABB physics, custom chunk shaders) powered by the deep simulation backend.*
+
+1. **Voxel Chunk Meshing & Data Structures (`src/Chimera.Presentation.Godot/Voxel/`):**
+   - $16 \times 16 \times 16$ or $32 \times 32 \times 32$ voxel chunk buffers with greedy meshing and face culling.
+   - Destructible block editing (digging and placing) synced with material properties.
+2. **Multi-Threaded Simulation Synchronization:**
+   - Consume immutable `DoubleBufferedSnapshot` render packets from `Chimera.Core` via lock-free atomic swaps.
+3. **Custom Visual Shaders:**
+   - Real-time Planckian temperature particle/voxel gradient shader.
+   - Bioluminescence emission and chromatic adaptation uniforms driven by creature genes.
+4. **Hero & Commander Dual-Camera Rig:**
+   - Dwarf Fortress Overview commander camera (orbit, zoom, slice Z-levels).
+   - Minecraft Hero Mode (first/third-person toggle, WASD, jump, sprint, aim).
 
 ---
 
 ## 4. Fresh Conversation Bootstrapping Prompt
 *(Whenever opening a new chat session to continue)*
 ```
-I am continuing development on Project Chimera. Please read HANDOFF_STATE.md, HANDOFF_PROTOCOL.md, and docs/PRD_MASTER.md to sync your context. Verify the current build with `dotnet test Chimera.sln` (47/47 tests passing) and proceed to Phase 4 (Godot C# 3D Voxel Engine & Greedy Meshing).
+I am continuing development on Project Chimera. Please read HANDOFF_STATE.md, HANDOFF_PROTOCOL.md, and docs/PRD_MASTER.md to sync your context. Verify the current build with `dotnet test Chimera.sln` (47/47 tests passing) and begin Phase 4: building the 3D Voxel Engine (Minecraft-style chunk greedy meshing, AABB hero controls, and custom shaders) driven by our completed Chimera.Core simulation backend.
 ```
