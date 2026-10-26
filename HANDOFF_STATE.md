@@ -1,43 +1,63 @@
 # Project Chimera — Current Handoff State
 
-**Current Date / Session:** Multi-Conversation Agent Swarm & Universal Slider Architecture  
+**Current Date / Session:** Phase 1 Milestone Completed & Verified (Swarm Active)  
 **Engine Baseline:** Godot 4.7.2 Mono (.NET C#) + Pure C# Core (.NET 8.0)  
-**Current Phase:** Phase 1: Macro-Simulation Core (Dwarf Fortress Foundation) & Extraction Layer
+**Current Phase:** Phase 1 Complete $\to$ Ready for Phase 4 Presentation & Voxel Meshing
 
 ---
 
-## 1. Active Sub-Conversations & Specialized Roles
+## 1. Verified Architecture Status (47/47 Tests Passing)
 
-All 8 specialized conversations are established and collaborating within this workspace:
+All foundational simulation layers are implemented in pure C# (`src/Chimera.Core/`) with zero Godot dependencies, zero-allocation memory pools, and bit-identical discrete tick determinism:
 
-1. **`reference-coordinator`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/eb824d66-c010-4a63-ae44-97a4fb4a6d2a/.system_generated/logs/transcript.jsonl)):
-   - Arbiter of PRD, naming consistency, and shared interfaces (`Chimera.Core/Contracts`).
-2. **`rea-extractor`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/f9b8519f-8e6d-4aa0-8fe4-281a6125c930/.system_generated/logs/transcript.jsonl)):
-   - Reverse Engineering Analyst extracting data from local RimWorld & Rain World installations and DF raw technical data.
-3. **`slider-math-engine`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/33c88ddd-b860-433d-9219-dc90d46256d1/.system_generated/logs/transcript.jsonl)):
-   - Implements the "Everything is a Slider" mathematical engine: continuous curves, thermal/force reaction matrices, allometric scaling.
-4. **`qa-peer-auditor`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/29388f3c-34b0-4951-8456-9e5012b89de9/.system_generated/logs/transcript.jsonl)):
-   - Independent QA and peer review auditor. Already audited baseline contracts, enforcing zero-allocation `SliderId` enums and fixed discrete tick determinism.
-5. **`narrator-voice-director`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/e4eb76a4-9a5a-4bfd-91e6-aacc258f07a6/.system_generated/logs/transcript.jsonl)):
-   - Formulated the Decoupled Triad pattern in [`docs/NARRATIVE_AND_VOICE_ARCHITECTURE.md`](docs/NARRATIVE_AND_VOICE_ARCHITECTURE.md).
-6. **`df-simulation`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/e287794d-87ac-4dfa-8bf9-e4422b0ef85b/.system_generated/logs/transcript.jsonl)):
-   - DF geology stratigraphy, raw materials registry, and unmanaged history ledgers.
-7. **`rimworld-psychology`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/1f2f02f1-12e3-4410-8d42-37f327d33f7e/.system_generated/logs/transcript.jsonl)):
-   - Translating RimWorld thought workers and mental break thresholds into continuous curves.
-8. **`rainworld-ecosystem`** ([Transcript](file:///C:/Users/para-/.gemini/antigravity/brain/e84b0c56-23b4-4000-8836-afc2a6378bea/.system_generated/logs/transcript.jsonl)):
-   - Autonomous off-screen food webs, dynamic fear/aggression matrices, environmental hazard cycles.
+1. **Macro-Simulation Core (Dwarf Fortress Foundation):**
+   - [`GeologicalStratigraphyGenerator.cs`](src/Chimera.Core/Macro/Geology/GeologicalStratigraphyGenerator.cs): 4-tier geological strata (Soil $\to$ Sedimentary $\to$ Metamorphic $\to$ Igneous Intrusive/Extrusive) powered by [`DeterministicNoise3D.cs`](src/Chimera.Core/Macro/Geology/DeterministicNoise3D.cs).
+   - [`MaterialRegistry.cs`](src/Chimera.Core/Macro/Materials/MaterialRegistry.cs) & [`RawMaterialProperties.cs`](src/Chimera.Core/Macro/Materials/RawMaterialProperties.cs): Bay12 raw yield tensors (Impact, Tensile, Compressive, Shear in $kPa$), Young's modulus, and Urist-to-Kelvin thermal conversions.
+   - [`HistoricalLedger.cs`](src/Chimera.Core/Macro/History/HistoricalLedger.cs): Unmanaged zero-allocation chronicle ledger storing historical events using [`FixedString64.cs`](src/Chimera.Core/Macro/History/FixedString64.cs).
+
+2. **Micro-Psychology & Social Webs (RimWorld Layer):**
+   - [`ContinuousMoodModel.cs`](src/Chimera.Core/Micro/Psychology/ContinuousMoodModel.cs): Differentiable continuous curves for hunger, rest, recreation, beauty, spaciousness, and masochist pain inversion.
+   - [`MentalBreakStateMachine.cs`](src/Chimera.Core/Micro/Mental/MentalBreakStateMachine.cs): Minor (0.35), Major (0.20), and Extreme (0.05) thresholds scaled by Neuroticism, Iron Will, and Pyromania, with recovery catharsis buffers.
+   - [`SocialAffinityEvaluator.cs`](src/Chimera.Core/Micro/Social/SocialAffinityEvaluator.cs): Continuous relationship weights ($+1.0$ faith, $+1.0$ clan feud, $-0.2$ sports rivalry, scaled by neuroticism).
+
+3. **Autonomous Ecosystem & Food Web (Rain World Layer):**
+   - [`FoodWebEcosystem.cs`](src/Chimera.Core/Ecology/FoodWeb/FoodWebEcosystem.cs): 5-tier trophic hierarchy with logistic biomass growth and batfly swarm depletion cooldowns.
+   - [`FearAggressionEvaluator.cs`](src/Chimera.Core/Ecology/Behavior/FearAggressionEvaluator.cs): Sigmoidal mass-ratio fear curves and hunger-driven aggression matrices.
+   - [`EnvironmentalHazardCycle.cs`](src/Chimera.Core/Ecology/Cycle/EnvironmentalHazardCycle.cs): 400s-800s countdown, tremor warnings at $T-120s$, flood progression, lethal crushing rain ($>15,000\text{ N}$), and den shelter isolation.
+   - [`LineageNode.cs`](src/Chimera.Core/Ecology/Cycle/LineageNode.cs): Evolutionary predator respawn replacement rolls on den occupant deaths.
+
+4. **Universal Slider & Math Engine:**
+   - [`SliderId.cs`](src/Chimera.Core/MathEngine/SliderId.cs): Strongly-typed 16-bit enum IDs eliminating GC allocation in micro-tick loops.
+   - [`SpellPhysicsMath.cs`](src/Chimera.Core/MathEngine/Thermodynamics/SpellPhysicsMath.cs): Fire and Ice unified thermal axis ($\Delta T$), humidity dampening, Arrhenius reaction kinetics, and Planckian temperature-to-RGBA particle spectrum.
+   - [`MetabolismMath.cs`](src/Chimera.Core/MathEngine/Biology/MetabolismMath.cs): Allometric size scaling ($S^3$ mass, $S^2$ surface area), Kleiber's Law, and generational starvation-to-shrinkage feedback loops.
+
+5. **Local AI Narrator & Voice Architecture:**
+   - [`docs/NARRATIVE_AND_VOICE_ARCHITECTURE.md`](docs/NARRATIVE_AND_VOICE_ARCHITECTURE.md): Decoupled Triad pattern where Ollama Director sends structured JSON intent to Sim, Sim ticks deterministically, and Piper/XTTS synthesizes voice from verified state changes.
+
+6. **Threading & Presentation Contracts:**
+   - [`DoubleBufferedSnapshot.cs`](src/Chimera.Core/Presentation/DoubleBufferedSnapshot.cs): Lock-free atomic snapshot swap (`Interlocked.Exchange`) for Godot rendering without torn reads or frame drops.
 
 ---
 
-## 2. Invariants & Rules Enforced by QA Auditor
-1. **Zero-Allocation Hot Loops:** `SliderId` is a strongly-typed enum (`ushort`); no string keys during simulation ticks.
-2. **Fixed Discrete Ticks:** Determinism guaranteed via fixed tick indexing (`ulong tickIndex` at 60 Hz).
-3. **Double-Buffered Render Packets:** Godot reads immutable front-buffer frames via lock-free atomic swaps (`Interlocked.Exchange`), eliminating torn reads and threading deadlocks.
-4. **Model-View Decoupling:** `Chimera.Core` contains zero references to Godot classes or audio/neural runtimes.
+## 2. Invariants & Guardrails
+- **Model-View Decoupling:** `Chimera.Core` contains ZERO references to Godot classes or audio runtimes.
+- **Deterministic 60 Hz Micro-Ticks:** Discrete tick indexing (`ulong microTickIndex`), no variable floating-point `deltaTime` accumulation.
+- **Data-Oriented Struct Buffers:** Contiguous unmanaged buffers (`Span<T>`), avoiding per-entity polymorphic class overhead.
 
 ---
 
-## 3. Fresh Conversation Handover Prompt
+## 3. Next Immediate Roadmap (Phase 4 Execution)
+1. **Godot C# Voxel Engine Scaffolding (`src/Chimera.Presentation.Godot/`):**
+   - Voxel chunk representation and greedy meshing algorithm.
+   - Multi-threaded render packet consumer subscribing to `DoubleBufferedSnapshot`.
+   - Voxel shaders: temperature color gradient, bioluminescence intensity uniform, and chromatic adaptation.
+2. **Camera & Hero Controls:**
+   - Overview DF commander orbit camera + 1st/3rd person hero mode.
+
+---
+
+## 4. Fresh Conversation Bootstrapping Prompt
+*(Whenever opening a new chat session to continue)*
 ```
-I am continuing development on Project Chimera. Please read HANDOFF_STATE.md and HANDOFF_PROTOCOL.md in the root workspace to sync your context. Run tests via `dotnet test Chimera.sln` and check the status of active sub-conversations.
+I am continuing development on Project Chimera. Please read HANDOFF_STATE.md, HANDOFF_PROTOCOL.md, and docs/PRD_MASTER.md to sync your context. Verify the current build with `dotnet test Chimera.sln` (47/47 tests passing) and proceed to Phase 4 (Godot C# 3D Voxel Engine & Greedy Meshing).
 ```
